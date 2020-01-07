@@ -1,0 +1,5 @@
+<apex:page controller="Account_Name_Get" >
+  <div class="row" title="Test Account Name" style="font-size:24px">
+      <apex:outputLabel value="{!AccountName}"/>
+  </div>
+</apex:page>

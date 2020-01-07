@@ -1,0 +1,124 @@
+<apex:page docType="html-5.0" showheader="false" sidebar="false" id="pageId">
+    <body>
+        <form>
+            <textarea name="editor1" id="editor1" />
+        </form>
+
+        <script src="/ckeditor/ckeditor-4.x/rel/ckeditor.js?t=4.5.7" type="text/javascript"/>
+
+        <script>
+            
+        CKEDITOR.timestamp = '4.5.7';
+        var prototocolAndHost = window.location.protocol + '//' + window.location.host;
+        var parenturl = document.referrer.split("/").slice(0,3).join("/");
+        var fName;
+        var pluginURL = '{!URLFOR($Resource.ckeditorplugins,'/dragresize/plugin.js')}';
+        
+        var editor = CKEDITOR.replace('editor1', {
+            baseHref : prototocolAndHost + '/ckeditor/ckeditor-4.x/rel/', 
+            customConfig : '{!URLFOR($Resource.ckeditorplugins,'sfdc-config.js')}', 
+            toolbar : 'imageFix',
+            extraPlugins : 'sfdcImage,sfdcMediaEmbed,sfdcSmartLink,sfdcCodeBlock,sfdcTable,sfdcVfAjax4J,uploadimage,dragresize,',
+            sharedSpaces : { top : 'cke_topSpace', bottom : ' cke_bottomSpace' }, 
+            filebrowserImageUploadUrl : '/_ui/common/request/servlet/RtaImageUploadServlet?type=Images', 
+            contentsCss : ['/ckeditor/ckeditor-4.x/rel/contents.css', '/sCSS/37.0/sprites/1466024068000/Theme3/default/gc/CKEditor.css', '/sCSS/37.0/sprites/1466024068000/Theme3/default/gc/HtmlDetailElem.css'], 
+            disableNativeSpellChecker : false,
+            language : 'en-us',
+            sfdcLabels : { 
+                CkeMediaEmbed : { 
+                    title : 'Embed Multimedia Content', 
+                    description : 'Use &lt;iframe&gt; code from DailyMotion, Vimeo, and Youtube.', 
+                    subtitle : 'Paste &amp;lt;iframe&amp;gt; code here:', 
+                    exampleTitle : 'Example:', 
+                    example : '\n            \n                &lt;iframe width=\&quot;560\&quot; height=\&quot;315\&quot; src=\&quot;https://www.youtube.com/embed/KcOm0TNvKBA\&quot; frameborder=\&quot;0\&quot; allowfullscreen&gt;&lt;/iframe&gt;\n            \n        ', 
+                    iframeMissing : 'Invalid &lt;iframe&gt; element. Please use valid code from the approved sites.'}, 
+                sfdcSwitchToText : { sfdcSwitchToTextAlt : 'Use plain text'}, 
+                CkeImageDialog : { 
+                    uploadTab : 'Upload Image', 
+                    infoTab_url : 'URL', 
+                    error : 'Error:', 
+                    uploadTab_desc_info : 'Enter a description of the image for visually impaired users', 
+                    uploadTab_desc : 'Description', 
+                    infoTab_url_info : 'Example: http://www.mysite.com/myimage.jpg', 
+                    btn_insert : 'Insert', 
+                    missingUrlError : 'You must enter a URL', 
+                    uploadTab_file : 'Select Image', 
+                    infoTab_desc : 'Description', 
+                    btn_update : 'Update', 
+                    wrongFileTypeError : 'You can insert only .gif .jpeg and .png files.', 
+                    infoTab : 'Web Address', 
+                    title : 'Insert Image', 
+                    infoTab_desc_info : 'Enter a description of the image for visually impaired users', 
+                    uploadTab_file_info : 'Maximum size 1 MB. Only png, gif or jpeg'}, 
+                CkeImagePaste : { CkeImagePasteWarning : 'Pasting an image is not working properly with Firefox, please use [Copy Image location] instead.'}
+            }
+        });
+        
+        editor.on('instanceReady', function( evt ) {
+            evt.editor.execCommand( 'maximize' );
+        });
+
+        //handle servlet request
+        editor.on( 'fileUploadRequest', function( evt ) {
+            var fileLoader = evt.data.fileLoader,
+                formData = new FormData(),
+                xhr = fileLoader.xhr;
+            
+            xhr.open( 'POST', fileLoader.uploadUrl, true );
+            formData.append( 'fileName', fileLoader.fileName );
+            formData.append( 'altText', '' );
+            formData.append( 'file', fileLoader.file, fileLoader.fileName );
+            fileLoader.xhr.send( formData );
+        
+            // Prevented default behavior.
+            evt.stop();
+        }, null, null, 4 );
+        
+        //handle response frome servlet
+        editor.on( 'fileUploadResponse', function( evt ) {
+            // Prevent the default response handler.
+            evt.stop();
+
+            // Ger XHR and response.
+            var data = evt.data;
+                xhr = data.fileLoader.xhr;
+                response = xhr.responseText.substring(9, xhr.responseText.length);
+                response = JSON.parse ( response );
+
+            if ( response.errMsg && response.errMsg.length > 0) {
+                // Error occurred during upload.
+                data.message = response.errMsg;
+                evt.cancel();
+            } 
+            else {
+                data.url = response.src;
+                editor.on( 'afterInsertHtml', function( evt ) {
+                    editor.fire( 'change' );
+                }); 
+            }
+        } );
+        
+
+        window.addEventListener("message", function(e) {
+            if (e.origin === parenturl) {
+                var RTFdata = e.data;
+                CKEDITOR.instances.editor1.setData(RTFdata);
+            }
+        }, false);
+
+        // Change event is fired whenever a change is made in the editor.
+        editor.on( 'change', function( evt ) {
+            var RTFData = CKEDITOR.instances.editor1.getData();
+            parent.postMessage({action:"Update", message:RTFData, fieldName:fName}, parenturl);
+        }); 
+        
+        //load data from parent on iframe/CKEditor window load
+        window.onload = function() {
+            url = window.location.origin;
+            fName = window.name;
+            parent.postMessage({action:"Loaded", url:url, fieldName:fName}, parenturl);
+        }
+
+        </script>
+    </body>
+</apex:page>

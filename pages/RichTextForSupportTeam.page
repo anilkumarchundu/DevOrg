@@ -1,0 +1,13 @@
+<apex:page >
+   <h1>
+        
+    Sample rich text Feild :(not editable after summer 18)</h1>
+    <div>
+        <iframe src="/apex/CW_InputRichText" aura:id="iframe" height="300" width="800" name="Initiative_Description__c" style="border:1px solid #b6b6b6"/>
+    </div>
+    
+    
+    <h2>
+        
+   Note :Please find an extra white border  below  this page which appeared after summer 18 release </h2>
+</apex:page>

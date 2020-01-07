@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Test</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Tests</value>
+    </caseValues>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+        <picklistValues>
+            <masterLabel>China</masterLabel>
+            <translation><!-- China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USA</masterLabel>
+            <translation><!-- USA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- My Number --></label>
+        <name>My_Number__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

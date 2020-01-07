@@ -1,0 +1,146 @@
+<apex:page docType="html-5.0" showHeader="true" sidebar="true" Controller="PCQW.qw_qs_Controller">
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> Queue Watcher - Quick Setup </title>
+
+	<apex:slds />
+
+    <style type="text/css">
+
+	.buttonArea {
+		width: 100%;
+		height: 100px;
+	}
+
+	.setupbutton {
+		width: 300px;
+		height: 50px;
+		border-style: solid;
+		border-width: 1px;
+		border-radius: 7px;
+		border-color: #d4d4d4;
+		text-align: center;
+		font-size: 18px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 11px;
+		cursor: pointer;
+	}
+	.setupbutton:hover {
+		background-color: #f2f2f2;
+	}
+
+	.messageArea {
+		width: 100%;
+		height: 100px;
+	}
+	.messageAreaInner {
+		width: 600px;
+		height: 50px;
+		text-align: center;
+		font-size: 14px;
+		margin: 0 auto;
+		color: #0F9AD7;
+	}
+
+	.textArea {
+		width: 700px;
+		height: 50px;
+		text-align: center;
+		font-size: 14px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 30px;
+	}
+
+    </style>
+</head>
+
+<body class="slds-scope">
+
+<!-- Page Header -->
+<div class="slds-page-header">
+	<div class="slds-media">
+		<div class="slds-media__figure">
+			<span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+				<svg class="slds-icon" aria-hidden="true">
+					<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#setup"></use>
+				</svg>
+			</span>
+		</div>
+		<div class="slds-media__body">
+			<h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Rohde Corp - 80,000 Widgets">Queue Watcher - Quick Setup</h1>
+		</div>
+	</div>
+</div>
+
+<!-- Text Area -->
+<div class="messageArea">
+	<div class="textArea">
+		<p>In order for QueueWatcher to receive notifications about new cases a PushTopic record must be created. <br/>
+		Simply click the button below and QueueWatcher will take care of the process.<br/>
+		A System Administrator should complete this.</p>
+	</div>
+</div>
+
+<!-- Button Area -->
+<div class="buttonArea">
+	<div class="setupbutton" onclick="buttonClicked()">
+		Create PushTopic
+	</div>
+</div>
+
+<!-- Message Area -->
+<div class="messageArea">
+	<div class="messageAreaInner">
+		<p id="outputMessage"></p>
+	</div>
+</div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <apex:includeScript value="{!URLFOR($Resource.PCQW__cometd_QueueWatcher, 'jquery-3.2.1.js')}"/>
+
+    <script>
+
+	$(document).ready(function() {
+		PCQW.qw_qs_Controller.checkForPushTopic(function(result, event) {
+			if (event.status) {
+                if(result == true) {
+					setTheMessageText('PushTopic already exists.');
+				} else {
+					// no pushtopic found. User must create one.
+				}
+            } else {
+				setTheMessageText('There was an error querying for the PushTopic object. <br/>Please ensure you an Administrator with permissions for the PushTopic object');
+            }
+		});
+	});
+
+	function buttonClicked() {
+		PCQW.qw_qs_Controller.upsert_QW_PushTopic(function(result, event) {
+			if (event.status) {
+                if(result.Id) {
+					setTheMessageText('PushTopic successfully created.');
+				} else {
+					setTheMessageText('There was an error creating the PushTopic object. <br/>Please ensure you an Administrator with permissions for the PushTopic object');
+				}
+            } else {
+				setTheMessageText('There was an error creating the PushTopic object. <br/>Please ensure you an Administrator with permissions for the PushTopic object');
+            }
+		});
+	}
+
+	function setTheMessageText(str) {
+		$('#outputMessage').html(str);
+	}
+
+    </script>
+</body>
+
+</html>
+
+</apex:page>
