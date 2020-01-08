@@ -633,7 +633,7 @@
         <members>Survey</members>
         <members>SystemNotification</members>
         <members>Territory2</members>
-        <members>Trailhead</members>
+      <!--  <members>Trailhead</members> -->
         <members>UserEngagement</members>
         <members>UserInterface</members>
         <members>UserManagement</members>
