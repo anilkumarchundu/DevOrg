@@ -373,6 +373,10 @@
       <name>MatchingRules</name>
    </types>
    <types>
+    <name>ApexClass</name>
+    <members>*</members>
+  </types>
+   <types>
       <members>Admin</members>
       <members>Analytics Cloud Integration User</members>
       <members>Analytics Cloud Security User</members>
