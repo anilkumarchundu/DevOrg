@@ -374,7 +374,7 @@
    </types>
    <types>
     <name>ApexClass</name>
-    <members>*</members>
+    <members>AProofOfConceptTest</members>
   </types>
    <types>
       <members>Admin</members>
