@@ -1,3 +1,0 @@
-<apex:page id="Time_Off_Calendar_Wrapper">
-	<apex:include pageName="Time_Off_Calendar"/>
-</apex:page>

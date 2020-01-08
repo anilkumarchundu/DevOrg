@@ -1,4 +1,0 @@
-<apex:page sidebar="false" showHeader="false" standardStylesheets="false">
- <apex:iframe src="https://salesforce.com" scrolling="true" id="theFrame"/>
-                 
-                 </apex:page>

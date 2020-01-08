@@ -11,6 +11,4 @@
     <tabs>standard-IdeaTheme</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
-    <tabs>Sales_Report__c</tabs>
-    <tabs>JustForSupportTeam</tabs>
 </CustomApplication>

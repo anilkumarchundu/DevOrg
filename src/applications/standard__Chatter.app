@@ -9,6 +9,4 @@
     <tabs>standard-OtherUserProfile</tabs>
     <tabs>standard-CollaborationGroup</tabs>
     <tabs>standard-File</tabs>
-    <tabs>Sales_Report__c</tabs>
-    <tabs>JustForSupportTeam</tabs>
 </CustomApplication>

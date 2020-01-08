@@ -8,6 +8,4 @@
     <tabs>standard-Workspace</tabs>
     <tabs>standard-ContentSearch</tabs>
     <tabs>standard-ContentSubscriptions</tabs>
-    <tabs>Sales_Report__c</tabs>
-    <tabs>JustForSupportTeam</tabs>
 </CustomApplication>

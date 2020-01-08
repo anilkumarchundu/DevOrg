@@ -179,15 +179,7 @@
     <tabs>standard-Case</tabs>
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Lead</tabs>
-    <tabs>Sales_Report__c</tabs>
-    <tabs>JustForSupportTeam</tabs>
     <workspaceConfig>
-        <mappings>
-            <tab>JustForSupportTeam</tab>
-        </mappings>
-        <mappings>
-            <tab>Sales_Report__c</tab>
-        </mappings>
         <mappings>
             <tab>standard-Account</tab>
         </mappings>

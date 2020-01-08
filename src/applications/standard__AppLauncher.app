@@ -5,6 +5,4 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <tabs>standard-AppLauncher</tabs>
-    <tabs>Sales_Report__c</tabs>
-    <tabs>JustForSupportTeam</tabs>
 </CustomApplication>

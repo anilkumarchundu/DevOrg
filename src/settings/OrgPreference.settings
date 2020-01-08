@@ -62,7 +62,7 @@
     </preferences>
     <preferences>
         <settingName>NetworksEnabled</settingName>
-        <settingValue>true</settingValue>
+        <settingValue>false</settingValue>
     </preferences>
     <preferences>
         <settingName>NotesReservedPref01</settingName>
@@ -90,7 +90,7 @@
     </preferences>
     <preferences>
         <settingName>RedirectionWarning</settingName>
-        <settingValue>false</settingValue>
+        <settingValue>true</settingValue>
     </preferences>
     <preferences>
         <settingName>ReferrerPolicy</settingName>
@@ -134,7 +134,7 @@
     </preferences>
     <preferences>
         <settingName>UpgradeInsecureRequestsPref</settingName>
-        <settingValue>false</settingValue>
+        <settingValue>true</settingValue>
     </preferences>
     <preferences>
         <settingName>UseLanguageFallback</settingName>

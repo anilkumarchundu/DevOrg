@@ -200,28 +200,8 @@
     <enableFeeds>true</enableFeeds>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
-        <fullName>Employee_Number__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <externalId>false</externalId>
-        <label>Employee Number (PTO)</label>
-        <length>20</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
         <fullName>ManagerId</fullName>
         <trackFeedHistory>true</trackFeedHistory>
-        <type>Hierarchy</type>
-    </fields>
-    <fields>
-        <fullName>Manager_PTO__c</fullName>
-        <externalId>false</externalId>
-        <label>Manager (PTO)</label>
-        <relationshipName>Users</relationshipName>
-        <restrictedAdminField>false</restrictedAdminField>
-        <trackFeedHistory>false</trackFeedHistory>
         <type>Hierarchy</type>
     </fields>
     <listViews>

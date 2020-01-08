@@ -1,4 +1,0 @@
-<aura:component >
-	<lightning:input aura:id="standardRebate" name="standardRebate" label="Standard Rebate" onchange="{!c.validatePercent}" onblur="{!c.addPercentSign}" />
-    <lightning:input aura:id="standardRebate1" name="standardRebate1" label="Standard Rebate1" onchange="{!c.validatePercent}" onblur="{!c.addPercentSign}" />
-</aura:component>

@@ -14,7 +14,7 @@
                 <field>Message</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Category</field>
             </layoutItems>
             <layoutItems>
@@ -22,8 +22,7 @@
                 <field>Channel</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
-        <style>TwoColumnsTopToBottom</style>
+        <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
